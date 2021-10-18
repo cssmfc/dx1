@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Browser Overlay</title>
+<script src="resources/jquery-3.1.1.min.js"></script>
+<script>
+		var bc = new BroadcastChannel('obs-lower-thirds-channel');
+		bc.onmessage = function (ev) {
+			received_data=ev.data.split("|");
+
+			document.getElementById("text1").innerHTML = received_data[0];
+			document.getElementById("text2").innerHTML = received_data[1];
+			document.getElementById("text3").innerHTML = received_data[2];
+			position = received_data[3];
+			animation = received_data[4];
+			
+			
+console.log ('Text Center: ' + received_data[0] + ', Text Left: ' + received_data[1] + ', Text Right: ' + received_data[2] + ', Show Hide: ' + received_data[3] + ', Animation: ' + received_data[4]);
+		
+		
+		if (position == 'dxshow') {document.getElementById("dxbar").classList.remove("dxhide");
+		document.getElementById("dxbar").classList.add("dxshow");};
+		if (position == 'dxhide') {document.getElementById("dxbar").classList.remove("dxshow");
+		document.getElementById("dxbar").classList.add("dxhide");};
+		
+		if (animation == 'animateIn') {document.getElementById("dxbar").classList.remove("animateOut");
+		document.getElementById("dxbar").classList.add("animateIn");};
+		if (animation == 'animateOut') {document.getElementById("dxbar").classList.remove("animateIn");
+		document.getElementById("dxbar").classList.add("animateOut");};
+		
+
+
+
+
+	
+	
+
+}
+	</script>
+    <link rel="stylesheet" href="resources/font/style.css">
+    
+<style>
+@import url('resources/font/font.css');
+*{box-sizing:border-box;}
+body{margin:0 auto;width:100%;}
+#dxwrap{display:block;width:100%;height:auto;margin:0 auto;}
+#dxbar{display:block;width:100%;height:auto;margin:0 auto;left:0;padding:0;transition:ease-in-out .5s;}
+#dxbar svg.purpleyellowbar{width:100%;height:auto;margin:0 auto;}
+/** SVG BAR ***/
+tspan { white-space:pre }
+.shp0 { fill: #9522ca ;transition:ease-in-out .5s;} 
+.shp1 { fill: #f8c13b ;transition:ease-in-out .5s;} 
+.txt2 { font-size: 68px;fill: #ffffff;font-family: "Bebas";text-anchor:start; } 
+.txt3 { font-size: 48px;fill: #ffffff;font-family: "Bebas";text-anchor:middle; } 
+.txt4 { font-size: 48px;fill: #ffffff;font-family: "Bebas";text-anchor:start;} 
+
+.dxshow svg .shp0 { fill: #9522ca }
+.dxshow svg .shp1 { fill: #f8c13b }
+.dxhide svg .shp0 { fill: #f8c13b }
+.dxhide svg .shp1 { fill: #9522ca }
+.animateIn{display:block;position:fixed;bottom:30px;left:0;}
+.animateOut{display:block;position:fixed;bottom:-170px;left:0;}
+#iconleft{display:block;width:75px;height:75px;background-color: transparent;}
+#iconright{display:block;width:75px;height:75px;background-color: transparent;}
+#iconleft img, #iconright img{display:block;width:100%;height:auto;margin:0 auto;}
+
+</style>
+</head>
+
+<body>
+
+<!-- Main Wrapper -->
+<div id="dxwrap">
+
+<!-- DXFX BAR --->
+<div id="dxbar" class="animateIn ">
+<svg id="lower-thirds" version="1.2" class="purpleyellowbar dxhide" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 100" width="1920" height="100">
+	<title></title>
+	<defs>
+<filter id="leftdogr">
+    <feOffset in="SourceAlpha" dx="0" dy="11" />
+    <feGaussianBlur result="blurOut" stdDeviation="4.899" />
+    <feFlood flood-color="rgb(72, 18, 97)" result="floodOut" />
+    <feComposite operator="out" in="floodOut" in2="blurOut" result="compOut" />
+    <feComposite operator="in" in="compOut" in2="SourceAlpha" />
+    <feComponentTransfer><feFuncA type="linear" slope="1"/></feComponentTransfer>
+    <feBlend mode="normal" in2="SourceGraphic" />
+</filter>
+<filter id="rightdogr">
+    <feOffset in="SourceAlpha" dx="0" dy="11" />
+    <feGaussianBlur result="blurOut" stdDeviation="4.899" />
+    <feFlood flood-color="rgb(72, 18, 97)" result="floodOut" />
+    <feComposite operator="out" in="floodOut" in2="blurOut" result="compOut" />
+    <feComposite operator="in" in="compOut" in2="SourceAlpha" />
+    <feComponentTransfer><feFuncA type="linear" slope="1"/></feComponentTransfer>
+    <feBlend mode="normal" in2="SourceGraphic" />
+</filter>
+<filter id="centerdogr">
+    <feOffset in="SourceAlpha" dx="0" dy="11" />
+    <feGaussianBlur result="blurOut" stdDeviation="4.899" />
+    <feFlood flood-color="rgb(72, 18, 97)" result="floodOut" />
+    <feComposite operator="out" in="floodOut" in2="blurOut" result="compOut" />
+    <feComposite operator="in" in="compOut" in2="SourceAlpha" />
+    <feComponentTransfer><feFuncA type="linear" slope="1"/></feComponentTransfer>
+    <feBlend mode="normal" in2="SourceGraphic" />
+</filter>
+<filter id="addshadow">
+  <feDropShadow dx="1" dy="2" stdDeviation="1" floodColor="#000000" floodOpacity="1"/>
+</filter>
+<filter id="dxshadow">
+  <feDropShadow dx="0" dy="2" stdDeviation="2" floodColor="#000000" floodOpacity="1"/>
+</filter>
+<filter id="dxshadow2">
+  <feDropShadow dx="1" dy="4" stdDeviation="4" floodColor="#000000" floodOpacity="1"/>
+</filter>
+</defs>
+	<path id="dxpurpleback" class="shp0" filter="url(#dxshadow2)" d="M1868.01 77.55L1731.51 77.55L1737.8 67.69L1102 67.69L1102 16.97L1770.14 16.97L1781 -0.06L1917.5 -0.06L1868.01 77.55ZM186.49 77.55L49.99 77.55L0.5 -0.06L137 -0.06L147.86 16.97L816 16.97L816 67.69L180.2 67.69L186.49 77.55Z" />
+	<path id="dxorange" class="shp1" filter="url(#dxshadow)" d="M1866.92 27.27L1820.4 100.22L1692.09 100.22L1692.43 99.69L1173.59 99.69L1127.5 48.97L1724.77 48.97L1738.61 27.27L1866.92 27.27ZM225.57 99.69L225.91 100.22L97.6 100.22L51.08 27.27L179.39 27.27L193.23 48.97L790.5 48.97L744.41 99.69L225.57 99.69Z" />
+	<path id="dxcentersides" class="shp0" filter="url(#dxshadow2)" d="M1137.13 100.43L1035.66 -0.53L1100.39 -0.53L1201.86 100.43L1137.13 100.43ZM716.14 100.43L817.61 -0.53L882.34 -0.53L780.87 100.43L716.14 100.43Z" />
+	<path id="dxplaceholdleft" class="shp0" filter="url(#leftdogr)" d="M272.83 8.44L730.51 8.44C742.41 8.44 742.84 16.41 731.47 26.24L678.93 71.67C667.56 81.5 648.71 89.47 636.81 89.47L179.13 89.47C167.23 89.47 166.81 81.5 178.17 71.67L230.71 26.24C242.08 16.41 260.94 8.44 272.83 8.44Z" />
+	<path id="dxplaceholdright" class="shp0" filter="url(#rightdogr)" d="M1643.17 7.55L1185.49 7.55C1173.59 7.55 1173.16 15.52 1184.53 25.35L1237.07 70.78C1248.44 80.61 1267.29 88.58 1279.19 88.58L1736.87 88.58C1748.77 88.58 1749.19 80.61 1737.83 70.78L1685.29 25.35C1673.92 15.52 1655.06 7.55 1643.17 7.55Z" />
+	<path id="dxplaceholdcenter" class="shp1" filter="url(#centerdogr)" d="M1149.25 94.21L1028.31 94.21C1026.5 94.21 1024.5 93.96 1022.39 93.51L902.61 93.51C900.5 93.96 898.5 94.21 896.69 94.21L775.75 94.21C764.71 94.21 764.49 85.26 775.27 74.21L820.18 28.2C830.96 17.15 848.66 8.2 859.7 8.2L944.36 8.2L980.64 8.2L1065.3 8.2C1076.34 8.2 1094.04 17.15 1104.82 28.2L1149.73 74.21C1160.51 85.26 1160.29 94.21 1149.25 94.21Z" />
+	<text id="dxcenteronline"  class="txtcenter" style="transform: matrix(1,0,0,1,960,76.45)" filter="url(#addshadow)">
+		<tspan id="text1" x="-70" y="0" class="txt2" dx="0 -2 -2 -2 -2 -2 -2" >ONLINE
+</tspan>
+	</text>
+	<text id="dxleftusername"  class="txtleft" style="transform: matrix(1,0,0,1,645,69.45)" filter="url(#addshadow)">
+		<tspan id="text2" x="-150" y="0" class="txt3" dx="0 -1 -1 -1 -1 -1 -1 -1 -1" >username
+</tspan>
+	</text>
+	<text id="dxrightusername" class="txtright" style="transform: matrix(1,0,0,1,1277,69.45)" filter="url(#addshadow)">
+		<tspan id="text3" x="0" y="0" class="txt4" dx="0 -1 -1 -1 -1 -1 -1 -1 -1" >username
+</tspan>
+	</text>
+	
+	<foreignObject x="97" y="27" width="75" height="75" >
+
+    <div id="iconleft" xmlns="http://www.w3.org/1999/xhtml" >
+	<img name="myImage1" src="resources/ics/01.png"/>
+    </div>
+  </foreignObject>
+  
+  <foreignObject x="1747" y="27" width="75" height="75" >
+
+    <div id="iconright" xmlns="http://www.w3.org/1999/xhtml" >
+	<img name="myImage2" src="resources/ics/02.png"/>
+    </div>
+	
+  </foreignObject>
+  
+</svg>
+
+
+</div><!--/ DXFX BAR --->
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Panel</title>
+<script src="resources/jquery-3.1.1.min.js"></script>
+
+<style>
+*:focus {outline:none !important}
+.xcr::-webkit-scrollbar{width:8px}
+.xcr::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);}
+.xcr::-webkit-scrollbar-thumb{-webkit-border-radius:10px;border-radius:10px;background:#F36;-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.5)}
+.xcr::-webkit-scrollbar-thumb:window-inactive{background:rgba(204,0,0,.4);border:1px solid #777}
+html{scroll-behavior: smooth;}
+.fxcr{overflow-y: scroll;scrollbar-color: #09F rgba(0,0,0,.2);scrollbar-width: thin;}
+*{box-sizing:border-box;}
+body{width:100%;height:auto;margin:0 auto;background-color:#222; overflow-x:hidden;}
+#dxwrapper{display:block;width:100%;height:auto;margin:0 auto;float:none;clear:both;}
+#dxwrapper:before,#dxwrapper:after{content:"";display:table;clear:both;}
+#dxcontrolpanel{display:block;width:90%;height:auto;margin:10px auto 12px auto;padding:.5em;}
+
+/*** Panel 1 ***/
+#firstpanel{display:block;width:100%;height:auto;margin:0 auto;padding:.3em;font-size:14px;color:#ccc;font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;float:none;clear:both;}
+#firstpanel:before, #firstpanel:after{content:"";display:table;clear:left;}
+#firstpanel .dxslots{display:block;width:95%;height:auto;float:none;padding:.3em;}
+.txtalignleft{text-align:left;}
+.txtalignright{text-align:right;}
+.txtaligncenter{text-align:center;}
+.dxslots label{display:block;font-size:14px;color:#f1f1f1;margin:0 auto 6px auto;text-indent:7px;font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;}
+.dxslots input[type="text"]{display:block;width:100%;height:auto;padding:.5em;box-siing:border-box; outline:none;box-shadow:inset 0 1px 3px #999;border-radius:3px;border:0;}
+.dxslots button.dxbtn{display:block;width:37%;height:auto;margin:5px;outline:none;font-size:10px;border-radius:3px;border:0;background-color:#C0C;color:#f1f1f1;text-transform:uppercase;cursor:pointer;padding:.5em 1em .4em;font-weight:700;float:left;box-sizing:border-box;}.dxslots button.dxbtn:hover{background-color:#C36;color:#fff;}
+.set{display:block;width:33.33%;float:left;color:#f1f1f1;}
+.dxignia{display:block;width:50%;float:left;padding:.5em 0 .3em;}
+.dxignia input[type="radio"],.dxignia lable{display:block;float:left;}
+ul#predefined1,
+ul#predefined2{list-style:none;padding:0;}
+ul#predefined1 li,
+ul#predefined2 li{display:block;width:90%%;height:auto;margin:0 auto;}
+.nameleft,.nameright{display:block;width:20px;height:20px;}
+</style>
+</head>
+
+<body class="xcr fxcr">
+<!-- DXFX Wrapper --->
+<div id="dxwrapper">
+
+<!-- Control Panel --->
+ <div id="dxcontrolpanel">
+ 
+ 
+ <!-- Panel 1 -->
+<div id="firstpanel">
+
+<div class="dxslots">
+<label class="txtalignleft">Left Username</label>
+<input type="text" id="myText2" placeholder="@username left" class="name" spellcheck="false">
+</div>
+
+<div class="dxslots">
+<label class="txtalignleft">Stream Status</label>
+<input type="text" id="myText1" placeholder="Online"  class="function" spellcheck="false">
+</div>
+
+<div class="dxslots">
+<label class="txtalignleft">Right Username</label>
+<input type="text" id="myText3" placeholder="@username right" class="name" spellcheck="false">
+</div>
+
+<div class="dxslots">
+<div class="set">
+<button class="dxbtn" id="sender" onclick="function_send()">View</button>
+<button class="dxbtn" id="sender" onclick="function_hide()">Hide</button>
+</div>
+<div class="set">
+   <span class="dxignia">
+   <input type="radio" name="radio-group" id="skin1" checked="checked" />
+   <label for="skin1">Skin 1</label></span>
+   <span class="dxignia">
+   <input type="radio" name="radio-group" id="skin2" />
+   <label for="skin2">Skin 2</label></span>
+   </div>
+   <div class="set">&nbsp;</div>
+</div>
+
+</div><!--/ Panel 1 -->
+ 
+ 
+ 
+ 
+ <div id="secondpanel">
+
+
+
+
+<div class="set">
+To do<br>
+add option to change side icons from folder resources/ics/
+
+</div>
+
+<div class="set">
+&nbsp;
+
+</div>
+
+<div class="set">
+&nbsp;
+
+</div>
+
+
+
+ </div>
+ 
+ 
+ 
+ 
+ </div>
+<!--/ Control Panel --->
+
+</div><!-- DXFX Wrapper --->
+
+
+
+<script>
+
+
+	
+
+function function_send() {
+	
+	var text1 = $("#myText1").val() || '<br>';
+	var text2 = $("#myText2").val() || '<br>';
+	var text3 = $("#myText3").val() || '<br>';
+
+	
+  	$("#text1").html(text1);
+  	$("#text2").html(text2);
+  	$("#text3").html(text3);
+
+
+}
+
+function function_hide() {
+			var element = document.getElementById("dxbar");
+             element.classList.toggle("animateIn");
+};
+
+
+
+
+		var bc = new BroadcastChannel('obs-lower-thirds-channel');
+		function function_send() {
+			
+
+			name_to_send1 = $("#text3:text").val();
+			name_to_send2 = $("#text2:text").val();
+			function_to_send = $("#text1:text").val();
+			var text1 = $("#myText1").val() || '<br>';
+	        var text2 = $("#myText2").val() || '<br>';
+	        var text3 = $("#myText3").val() || '<br>';
+               $("#text1").html(text1);
+  	           $("#text2").html(text2);
+  	           $("#text3").html(text3);
+
+
+
+			if (document.getElementById("skin1").checked == true) {position = "dxshow"};
+			if (document.getElementById("skin2").checked == true) {position = "dxhide"};
+			
+
+
+			bc.postMessage(text1 + '|' + text2 + '|' + text3 + '|' + position + '|' + 'animateIn'); 
+			
+			/* send */
+		};
+function function_hide() {
+			bc.postMessage('||||animateOut'); 
+		}
+	</script>
+
+
+</body>
+</html>

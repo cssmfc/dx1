@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style>
+*:focus {outline:none !important}
+.xcr::-webkit-scrollbar{width:8px}
+.xcr::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);}
+.xcr::-webkit-scrollbar-thumb{-webkit-border-radius:10px;border-radius:10px;background:#F36;-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.5)}
+.xcr::-webkit-scrollbar-thumb:window-inactive{background:rgba(204,0,0,.4);border:1px solid #777}
+html{scroll-behavior: smooth;}
+.fxcr{overflow-y: scroll;scrollbar-color: #09F rgba(0,0,0,.2);scrollbar-width: thin;}
+*{box-sizing:border-box;}
+body{width:100%;margin:0 auto;background-color:#f1f1f1;}
+.container{display:block;width:80%;height:auto;padding:2em 1em 2em;margin:0 auto;background-color:#fff;color:#555;font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;font-weight:100;font-size:1.5rem;}
+.section{display:block;width:90%;height:auto;margin:10px auto 12px auto;padding:.5em;}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="section">
+  <h2>project using Broadcast Channel API </h2>
+<p>Two web pages using <strong>broadcast channel</strong> more info here <a href="https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API" target="_blank">Broadcast Channel API MDN</a></p>
+</div>
+
+<div class="section">
+<p>OBS overlay</p>
+<p>Dock the OBS panel in OBS custom panels (mac not supported yet) and add the browser overlay as source in OBS</p>
+<p>custom panel - <a href="panel.html" target="_blank">obs panel</a><br>
+browser source - <a href="browser-overlay.html" target="_blank">browser source</a></p>
+</div>
+
+<div class="section">
+<p><strong>Features</strong></p>
+<p>- change text from browser source via input text in panel</p>
+<p>- show or hide the bottom bar</p>
+<p>- chanage/ swap colors of the svg bar</p>
+<p><strong>To do</strong></p>
+<p>- option to change icons from panel to svg bar available in browser source</p>
+</div>
+
+
+</div>
+
+</body>
+</html>
